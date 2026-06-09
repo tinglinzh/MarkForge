@@ -10,7 +10,7 @@
     "skipLibCheck": true,
     "noEmit": true,
     "paths": {
-      "@markForge/ui/*": ["./src/*"]
+      "@markforge/ui/*": ["./src/*"]
     },
     "types": []
   },

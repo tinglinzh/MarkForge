@@ -6,8 +6,8 @@ import {
   FolderTrigger,
   FolderPanel,
   FileItem
-} from '@markForge/ui/components/animate-ui/components/base/files'
-import { cn } from '@markForge/ui/lib/utils'
+} from '@markforge/ui/components/animate-ui/components/base/files'
+import { cn } from '@markforge/ui/lib/utils'
 import { buildTree, type TreeNode, type CreateMode } from './tree-model'
 import { TreeContextMenu, type MenuTarget } from './tree-context-menu'
 import { TreeRenameInput } from './tree-rename-input'

@@ -1,7 +1,7 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import { motion } from 'motion/react'
-import { ScrollArea } from '@markForge/ui/components/ui/scroll-area'
-import { cn } from '@markForge/ui/lib/utils'
+import { ScrollArea } from '@markforge/ui/components/ui/scroll-area'
+import { cn } from '@markforge/ui/lib/utils'
 import type { SlashItem } from './slash-command'
 
 export type SlashMenuProps = {

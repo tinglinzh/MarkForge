@@ -8,7 +8,7 @@ import {
   HighlightItem,
   type HighlightItemProps,
   type HighlightProps,
-} from "@markForge/ui/components/animate-ui/primitives/effects/highlight";
+} from "@markforge/ui/components/animate-ui/primitives/effects/highlight";
 import {
   Accordion,
   AccordionItem,
@@ -20,9 +20,9 @@ import {
   type AccordionHeaderProps,
   type AccordionTriggerProps,
   type AccordionPanelProps,
-} from "@markForge/ui/components/animate-ui/primitives/base/accordion";
-import { getStrictContext } from "@markForge/ui/lib/get-strict-context";
-import { useControlledState } from "@markForge/ui/hooks/use-controlled-state";
+} from "@markforge/ui/components/animate-ui/primitives/base/accordion";
+import { getStrictContext } from "@markforge/ui/lib/get-strict-context";
+import { useControlledState } from "@markforge/ui/hooks/use-controlled-state";
 
 type FilesContextType = {
   open: string[];

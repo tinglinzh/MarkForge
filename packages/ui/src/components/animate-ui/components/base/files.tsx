@@ -25,8 +25,8 @@ import {
   type FolderPanelProps as FolderPanelPrimitiveProps,
   type FileProps as FilePrimitiveProps,
   type FileLabelProps as FileLabelPrimitiveProps,
-} from "@markForge/ui/components/animate-ui/primitives/base/files";
-import { cn } from "@markForge/ui/lib/utils";
+} from "@markforge/ui/components/animate-ui/primitives/base/files";
+import { cn } from "@markforge/ui/lib/utils";
 
 type GitStatus = "untracked" | "modified" | "deleted";
 

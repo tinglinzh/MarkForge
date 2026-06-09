@@ -1,6 +1,6 @@
 import { ScrollArea as ScrollAreaPrimitive } from "@base-ui/react/scroll-area";
 
-import { cn } from "@markForge/ui/lib/utils";
+import { cn } from "@markforge/ui/lib/utils";
 
 function ScrollArea({
   className,

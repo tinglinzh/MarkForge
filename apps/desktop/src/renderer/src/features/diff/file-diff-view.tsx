@@ -17,7 +17,7 @@ type FileDiffViewProps = {
  * file using `@pierre/diffs`. The underlying web component styles itself inside
  * a shadow DOM, so it stays isolated from the app's Tailwind / HeroUI styles;
  * we only pick the pierre theme pair so it tracks the OS light / dark mode and
- * matches markForge's black / white / gray language.
+ * matches markforge's black / white / gray language.
  */
 export function FileDiffView({
   name,

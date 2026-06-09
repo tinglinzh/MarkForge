@@ -15,11 +15,11 @@
   "menuColor": "default",
   "menuAccent": "subtle",
   "aliases": {
-    "components": "@markForge/ui/components",
-    "utils": "@markForge/ui/lib/utils",
-    "ui": "@markForge/ui/components/ui",
-    "lib": "@markForge/ui/lib",
-    "hooks": "@markForge/ui/hooks"
+    "components": "@markforge/ui/components",
+    "utils": "@markforge/ui/lib/utils",
+    "ui": "@markforge/ui/components/ui",
+    "lib": "@markforge/ui/lib",
+    "hooks": "@markforge/ui/hooks"
   },
   "registries": {
     "@animate-ui": "https://animate-ui.com/r/{name}.json"

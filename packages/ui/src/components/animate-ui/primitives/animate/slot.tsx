@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion, isMotionComponent, type HTMLMotionProps } from "motion/react";
-import { cn } from "@markForge/ui/lib/utils";
+import { cn } from "@markforge/ui/lib/utils";
 
 type AnyProps = Record<string, unknown>;
 

@@ -1,6 +1,6 @@
 import { NodeViewContent, NodeViewWrapper, type NodeViewProps } from '@tiptap/react'
-import { ScrollArea } from '@markForge/ui/components/ui/scroll-area'
-import { CopyButton } from '@markForge/ui/components/animate-ui/components/buttons/copy'
+import { ScrollArea } from '@markforge/ui/components/ui/scroll-area'
+import { CopyButton } from '@markforge/ui/components/animate-ui/components/buttons/copy'
 
 /**
  * React NodeView for code blocks: keeps the code editable (via NodeViewContent,
