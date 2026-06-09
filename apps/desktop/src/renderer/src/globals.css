@@ -1,0 +1,215 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@heroui/styles";
+@import "@markForge/ui/globals.css";
+@source '../../../../../packages/ui/src/components/**/*.{ts,tsx}';
+@custom-variant dark (&:is(.dark *));
+/*
+ * All colors live here; components reference them via Tailwind utilities
+ * (bg-background, text-foreground, bg-card, text-muted-foreground, ...).
+ */
+:root {
+  --background: #f6f6f7;
+  --foreground: #1c1c1e;
+
+  --card: #ffffff;
+  --card-foreground: #1c1c1e;
+
+  --sidebar: #f0f0f1;
+  --sidebar-foreground: #2a2a2d;
+
+  --muted: #ededee;
+  --muted-foreground: #76767b;
+
+  --accent: #e9e9eb;
+  --accent-foreground: #1c1c1e;
+
+  --border: #e4e4e7;
+  --ring: #b8b8bd;
+
+  --shadow-panel: 0 1px 2px rgb(0 0 0 / 0.04), 0 4px 16px rgb(0 0 0 / 0.04);
+  --shadow-popover: 0 8px 24px rgb(0 0 0 / 0.10);
+  --shadow-dialog: 0 24px 64px rgb(0 0 0 / 0.18);
+
+  /* Enables CSS light-dark() — used by the editor's Shiki code highlighting
+     (One Light / GitHub Dark) to pick a color per system scheme. */
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #161618;
+    --foreground: #ededee;
+
+    --card: #1e1e21;
+    --card-foreground: #ededee;
+
+    --sidebar: #19191b;
+    --sidebar-foreground: #d7d7da;
+
+    --muted: #26262a;
+    --muted-foreground: #9a9aa0;
+
+    --accent: #2a2a2e;
+    --accent-foreground: #ededee;
+
+    --border: #2a2a2e;
+    --ring: #3a3a40;
+
+    --shadow-panel: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 16px rgb(0 0 0 / 0.3);
+    --shadow-popover: 0 8px 24px rgb(0 0 0 / 0.5);
+    --shadow-dialog: 0 24px 64px rgb(0 0 0 / 0.6);
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+
+  --shadow-panel: var(--shadow-panel);
+  --shadow-popover: var(--shadow-popover);
+  --shadow-dialog: var(--shadow-dialog);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  /* Transparent so the native window vibrancy / blur shows through. Panels
+     (editor card, popovers) opt back in with their own translucent surfaces. */
+  background-color: transparent;
+  color: var(--foreground);
+  font-family:
+    ui-sans-serif, system-ui, -apple-system, "SF Pro Text", "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Tiptap / ProseMirror writing surface ---- */
+.tiptap.ProseMirror {
+  outline: none;
+  line-height: 1.75;
+  color: var(--foreground);
+}
+
+.tiptap.ProseMirror > * + * {
+  margin-top: 0.85em;
+}
+
+.tiptap.ProseMirror h1 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-top: 1.4em;
+}
+
+.tiptap.ProseMirror h2 {
+  font-size: 1.5rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  margin-top: 1.3em;
+}
+
+.tiptap.ProseMirror h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 1.2em;
+}
+
+.tiptap.ProseMirror p {
+  font-size: 1rem;
+}
+
+.tiptap.ProseMirror ul,
+.tiptap.ProseMirror ol {
+  padding-left: 1.4em;
+}
+
+.tiptap.ProseMirror ul {
+  list-style: disc;
+}
+
+.tiptap.ProseMirror ol {
+  list-style: decimal;
+}
+
+.tiptap.ProseMirror blockquote {
+  padding-left: 1em;
+  border-left: 3px solid var(--border);
+  color: var(--muted-foreground);
+}
+
+.tiptap.ProseMirror code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.875em;
+  background-color: var(--muted);
+  border-radius: 4px;
+  padding: 0.15em 0.35em;
+}
+
+.tiptap.ProseMirror pre {
+  /* Background / rounding live on the wrapping ScrollArea now; the <pre> sizes
+     to its content so wide lines scroll horizontally inside the ScrollArea. */
+  margin: 0;
+  padding: 0.9em 1.1em;
+  width: max-content;
+  min-width: 100%;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.85em;
+}
+
+.tiptap.ProseMirror pre code {
+  background: transparent;
+  padding: 0;
+  font-size: 0.85em;
+}
+
+.tiptap.ProseMirror a {
+  color: var(--foreground);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.tiptap.ProseMirror hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.5em 0;
+}
+
+.tiptap.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: var(--muted-foreground);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+
+/* ---- Window drag regions (frameless / hiddenInset titlebar) ---- */
+.drag-region {
+  -webkit-app-region: drag;
+}
+
+.no-drag {
+  -webkit-app-region: no-drag;
+}
