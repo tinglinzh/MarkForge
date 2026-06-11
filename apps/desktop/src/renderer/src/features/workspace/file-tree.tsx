@@ -162,7 +162,7 @@ export function FileTreeView({
         onClick={() => selectFile(node)}
         onContextMenu={(event) => openMenu(event, node)}
         className={cn(
-          'cursor-pointer rounded-lg',
+          'cursor-pointer rounded-2xl',
           selected === node.path && 'bg-accent text-accent-foreground'
         )}
       >
@@ -189,7 +189,7 @@ export function FileTreeView({
           onClick={() => selectDir(node)}
           onContextMenu={(event) => openMenu(event, node)}
           className={cn(
-            'cursor-pointer rounded-lg',
+            'cursor-pointer rounded-2xl',
             selected === node.path && 'bg-accent text-accent-foreground'
           )}
         >

@@ -12,24 +12,25 @@ import {
   FolderOpenIcon as HugeFolderOpenIcon,
   ArrowRight01Icon,
   File01Icon,
-  FloppyDiskIcon
+  FloppyDiskIcon,
+  SidebarLeft01Icon
 } from '@hugeicons/core-free-icons'
 
 type IconProps = { size?: number }
 
-function makeIcon(glyph: IconSvgElement, displayName: string) {
+function makeIcon(glyph: IconSvgElement) {
   function Icon({ size = 16 }: IconProps): React.JSX.Element {
     return <HugeiconsIcon icon={glyph} size={size} />
   }
-  Icon.displayName = displayName
   return Icon
 }
 
-export const FolderPlusIcon = makeIcon(FolderAddIcon, 'FolderPlusIcon')
-export const FilePlusIcon = makeIcon(FileAddIcon, 'FilePlusIcon')
-export const SparkleIcon = makeIcon(SparklesIcon, 'SparkleIcon')
-export const FolderIcon = makeIcon(Folder01Icon, 'FolderIcon')
-export const FolderOpenIcon = makeIcon(HugeFolderOpenIcon, 'FolderOpenIcon')
-export const ChevronRightIcon = makeIcon(ArrowRight01Icon, 'ChevronRightIcon')
-export const FileTextIcon = makeIcon(File01Icon, 'FileTextIcon')
-export const SaveIcon = makeIcon(FloppyDiskIcon, 'SaveIcon')
+export const FolderPlusIcon = makeIcon(FolderAddIcon)
+export const FilePlusIcon = makeIcon(FileAddIcon)
+export const SparkleIcon = makeIcon(SparklesIcon)
+export const FolderIcon = makeIcon(Folder01Icon)
+export const FolderOpenIcon = makeIcon(HugeFolderOpenIcon)
+export const ChevronRightIcon = makeIcon(ArrowRight01Icon)
+export const FileTextIcon = makeIcon(File01Icon)
+export const SaveIcon = makeIcon(FloppyDiskIcon)
+export const SidebarIcon = makeIcon(SidebarLeft01Icon)

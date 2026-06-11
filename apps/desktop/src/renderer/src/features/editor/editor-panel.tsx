@@ -1,5 +1,6 @@
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
-import { Feather } from 'nucleo-glass-icons/react'
+import { Feather, RectLayoutGrid } from 'nucleo-glass-icons/react'
+import { AnimatePresence, motion } from 'motion/react'
 import { EditorContent } from '@tiptap/react'
 import { Button, Spinner } from '@heroui/react'
 import { useMarkdownEditor } from './use-markdown-editor'
@@ -9,7 +10,7 @@ import { HistoryIcon } from './icons'
 import { useFileHistory } from '../history/use-file-history'
 import { Timeline } from '../history/timeline'
 import type { TimelineSelection } from '../history/history.types'
-import { SaveIcon } from '../workspace/icons'
+import { SaveIcon, SidebarIcon } from '../workspace/icons'
 import type { ActiveDocument, DocumentStatus } from '../workspace/workspace.types'
 
 // Lazy so the diff renderer (and its Shiki highlighter) stays out of the
@@ -22,9 +23,13 @@ type EditorPanelProps = {
   document: ActiveDocument | null
   activePath: string | null
   status: DocumentStatus
+  /** Whether the workspace sidebar is currently visible. */
+  sidebarOpen: boolean
   onSave: (content: string) => Promise<void>
   /** Restore a stored version; rewrites the file and reflects it in the editor. */
   onRestoreVersion: (id: string) => Promise<void>
+  /** Re-open the hidden workspace sidebar. */
+  onOpenSidebar: () => void
 }
 
 /** Right pane: the Tiptap toolbar + writing surface for the active document. */
@@ -32,8 +37,10 @@ export function EditorPanel({
   document,
   activePath,
   status,
+  sidebarOpen,
   onSave,
-  onRestoreVersion
+  onRestoreVersion,
+  onOpenSidebar
 }: EditorPanelProps): React.JSX.Element {
   const [isDirty, setIsDirty] = useState(false)
   const [mode, setMode] = useState<'edit' | 'diff'>('edit')
@@ -134,16 +141,43 @@ export function EditorPanel({
   return (
     <section className="flex h-full min-w-0 flex-1 flex-col rounded-2xl bg-card/70 shadow-panel backdrop-blur-md">
       <header className="drag-region flex h-14 shrink-0 items-center justify-between gap-4 px-5">
-        <div className="flex min-w-0 flex-col">
-          <span className="flex items-center gap-1.5 truncate text-[13px] font-semibold text-foreground">
-            {fileName ?? ''}
-            {isDirty && <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-muted-foreground" />}
-          </span>
-          {activePath && (
-            <span className="truncate text-[11px] text-muted-foreground" title={activePath}>
-              {activePath}
+        <div className="flex min-w-0 items-center gap-1.5">
+          <AnimatePresence initial={false}>
+            {!sidebarOpen && (
+              <motion.div
+                key="open-sidebar"
+                className="no-drag shrink-0 overflow-hidden"
+                initial={{ opacity: 0, width: 0 }}
+                animate={{ opacity: 1, width: 32 }}
+                exit={{ opacity: 0, width: 0 }}
+                transition={{ type: 'spring', stiffness: 420, damping: 36, mass: 0.8 }}
+              >
+                <Button
+                  isIconOnly
+                  variant="ghost"
+                  size="sm"
+                  aria-label="显示侧边栏"
+                  onPress={onOpenSidebar}
+                  className="h-8 w-8 min-w-0 bg-transparent text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                >
+                  <RectLayoutGrid size={16} />
+                </Button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+          <div className="flex min-w-0 flex-col">
+            <span className="flex items-center gap-1.5 truncate text-[13px] font-semibold text-foreground">
+              {fileName ?? ''}
+              {isDirty && (
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-muted-foreground" />
+              )}
             </span>
-          )}
+            {activePath && (
+              <span className="truncate text-[11px] text-muted-foreground" title={activePath}>
+                {activePath}
+              </span>
+            )}
+          </div>
         </div>
         {hasDocument && editor && (
           <div className="no-drag flex items-center gap-2">

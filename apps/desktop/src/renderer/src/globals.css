@@ -30,7 +30,6 @@
   --shadow-panel: 0 1px 2px rgb(0 0 0 / 0.04), 0 4px 16px rgb(0 0 0 / 0.04);
   --shadow-popover: 0 8px 24px rgb(0 0 0 / 0.10);
   --shadow-dialog: 0 24px 64px rgb(0 0 0 / 0.18);
-
   /* Enables CSS light-dark() — used by the editor's Shiki code highlighting
      (One Light / GitHub Dark) to pick a color per system scheme. */
   color-scheme: light dark;

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Button } from '@heroui/react'
 import { FileTreeView, type CreateDraft } from './file-tree'
 import { WorkspaceSwitcher } from './workspace-switcher'
-import { FolderOpenIcon, FolderPlusIcon, FilePlusIcon } from './icons'
+import { FolderOpenIcon, FolderPlusIcon, FilePlusIcon, SidebarIcon } from './icons'
 import type { CreateMode } from './tree-model'
 import type { WorkspaceFolder } from './workspace.types'
 import type { TreeSelection } from './use-workspace'
@@ -23,6 +23,8 @@ type WorkspacePanelProps = {
   onRenamePath: (fromRel: string, toRel: string) => void
   onMovePaths: (paths: string[], toDir: string) => void
   onDeletePath: (path: string) => void
+  /** Collapse (hide) the sidebar. */
+  onCollapse: () => void
 }
 
 /**
@@ -44,7 +46,8 @@ export function WorkspacePanel({
   onCreateFolder,
   onRenamePath,
   onMovePaths,
-  onDeletePath
+  onDeletePath,
+  onCollapse
 }: WorkspacePanelProps): React.JSX.Element {
   const [draft, setDraft] = useState<CreateDraft | null>(null)
 
@@ -72,9 +75,14 @@ export function WorkspacePanel({
     <aside className="flex h-full w-67 shrink-0 flex-col ">
       <header className="drag-region flex items-center justify-between px-4 pb-2 pt-9">
         <span className="text-[13px] font-semibold text-sidebar-foreground">工作区</span>
-        <IconButton label="打开文件夹" onPress={onAddWorkspace} isDisabled={isOpeningFolder}>
-          <FolderOpenIcon size={16} />
-        </IconButton>
+        <div className="flex items-center gap-0.5">
+          <IconButton label="打开文件夹" onPress={onAddWorkspace} isDisabled={isOpeningFolder}>
+            <FolderOpenIcon size={16} />
+          </IconButton>
+          <IconButton label="隐藏侧边栏" onPress={onCollapse}>
+            <SidebarIcon size={16} />
+          </IconButton>
+        </div>
       </header>
 
       <WorkspaceSwitcher
